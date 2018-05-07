@@ -1,5 +1,10 @@
 <template>
   <v-container>
+    <v-layout justify-center>
+      <v-flex class="text-xs-center">
+        <h1>Current Category {{ category.toUpperCase() }}</h1>
+      </v-flex>
+    </v-layout>
     <v-layout column>
       <v-flex v-for="user in Users" :key="user.name">
         <User
@@ -17,7 +22,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import User from '@/components/User.vue';
-import Users from '@/db/Users.json';
+import Users from '../db/Users.json';
 
 export default Vue.extend({
   components: { User },

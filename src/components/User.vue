@@ -81,10 +81,11 @@ export default Vue.extend({
       top 0
       left 50%
       transform translate(-50%, -100%)
+      font-size 1.2rem
   .red
-    background-color red + 50%
+    background-color red + 70% !important
   .green
-    background-color green + 50%
+    background-color green + 70% !important
   .blue
-    background-color blue + 80%
+    background-color blue + 70% !important
 </style>
