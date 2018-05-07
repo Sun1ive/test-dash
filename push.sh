@@ -1,1 +1,3 @@
-git add . && git commit -m123 && git push
+git add . 
+git commit -m 'gettin better'
+git push
