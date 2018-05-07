@@ -26,11 +26,11 @@ export default Vue.extend({
   padding 0
 
 .collapse-enter-active
-  transition all .5s ease
+  transition all .4s ease
 .collapse-leave-active
-  transition all .8s linear
+  transition all .5s linear
 
 .collaps-enter, .collapse-leave-to
-  transform: translateX(10px)
+  transform: translateX(20px)
   opacity 0
 </style>

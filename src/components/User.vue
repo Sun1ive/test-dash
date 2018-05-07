@@ -20,7 +20,7 @@ export default Vue.extend({
   props: {
     percent: {
       type: Number,
-      default: () => 100,
+      required: true,
     },
     photo: {
       type: String,
@@ -40,10 +40,10 @@ export default Vue.extend({
     },
   },
   methods: {
-    setClass(value: number) {
-      if (value > 100) {
+    setClass(val: number) {
+      if (val > 100) {
         return 'blue';
-      } else if (value > this.percent) {
+      } else if (val >= this.percent) {
         return 'green';
       }
       return 'red';
