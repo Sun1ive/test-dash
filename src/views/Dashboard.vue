@@ -1,11 +1,18 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
+  <v-container>
+    <v-layout>
+      <v-flex>
+        <User />
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
+import User from '@/components/User.vue';
 
-export default Vue.extend({});
+export default Vue.extend({
+  components: { User },
+});
 </script>
