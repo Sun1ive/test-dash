@@ -27,16 +27,31 @@
             :photo="user.photo"
             :percent="percent"
             :value="user[category]"
+            @click.native="openDialog(user)"
           />
         </v-flex>
       </transition-group>
     </v-layout>
+    <v-dialog
+      v-model="dialog"
+      max-width="400"
+    >
+      <Card
+        :name="user.name"
+        :manager="user.manager"
+        :photo="user.photo"
+        :perne="user.perne"
+        :lenjerie="user.lenjerie"
+        :fete="user.fete"
+      />
+    </v-dialog>
   </v-container>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
 import User from '@/components/User.vue';
+import Card from '@/components/Card.vue';
 import Users from '../db/Users.json';
 
 interface IUSER {
@@ -46,21 +61,36 @@ interface IUSER {
   perne: number;
   lenjerie: number;
   fete: number;
-  [key: string]: number;
+  [key: string]: number | string;
 }
 
 export default Vue.extend({
-  components: { User },
+  components: { User, Card },
   data: () => ({
     Users: Users as IUSER[],
     category: 'perne',
     percent: 66,
+    dialog: false,
+    user: {
+      name: '',
+      manager: '',
+      photo: '',
+      perne: 0,
+      lenjerie: 0,
+      fete: 0,
+    } as IUSER,
   }),
   computed: {
     filtered() {
       return Users
         .filter((user: IUSER) => user[this.category])
-        .sort((a: IUSER, b: IUSER) => a[this.category] - b[this.category]);
+        .sort((a: IUSER, b: IUSER) => (a[this.category]as number) - (b[this.category] as number));
+    },
+  },
+  methods: {
+    openDialog(User: IUSER) {
+      this.dialog = true;
+      this.user = User;
     },
   },
 });

@@ -56,7 +56,7 @@ export default Vue.extend({
 .mycard
   max-width 1064px
   padding 1rem 0
-  font-family: 'Arvo', serif;
+  font-family: 'PT Sans', serif;
   border-radius 11px
   box-shadow 0px 2px 10px rgba(green, .4)
   background-color #fff
