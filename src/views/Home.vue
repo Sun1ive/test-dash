@@ -1,7 +1,9 @@
 <template>
-  <div class="home">
-    <img src="../assets/logo.png">
-  </div>
+  <v-container>
+    <v-layout justify-center align-center>
+      <v-flex class="text-xs-center"/>
+    </v-layout>
+  </v-container>
 </template>
 
 <script lang="ts">
