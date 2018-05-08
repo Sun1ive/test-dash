@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-layout justify-center>
+    <v-layout justify-center align-center>
       <v-flex class="text-xs-center">
         <h1>Current Category {{ category.toUpperCase() }}</h1>
       </v-flex>
@@ -52,12 +52,15 @@
 import Vue from 'vue';
 import User from '@/components/User.vue';
 import Card from '@/components/Card.vue';
-import Users from '../db/Users.json';
+import Users from '@/db/Users';
 
-interface IUSER {
+interface IUser {
+  // eslint-disable-next-line
   name: string;
   manager: string;
   photo: string;
+}
+interface IUserValues extends IUser {
   perne: number;
   lenjerie: number;
   fete: number;
@@ -67,7 +70,7 @@ interface IUSER {
 export default Vue.extend({
   components: { User, Card },
   data: () => ({
-    Users: Users as IUSER[],
+    Users: Users as IUserValues[],
     category: 'perne',
     percent: 66,
     dialog: false,
@@ -78,17 +81,18 @@ export default Vue.extend({
       perne: 0,
       lenjerie: 0,
       fete: 0,
-    } as IUSER,
+    } as IUser,
   }),
   computed: {
-    filtered() {
+    filtered(): IUserValues[] {
       return Users
-        .filter((user: IUSER) => user[this.category])
-        .sort((a: IUSER, b: IUSER) => (a[this.category]as number) - (b[this.category] as number));
+        .filter((user: IUserValues) => user[this.category])
+        .sort((a: IUserValues, b: IUserValues) =>
+          (a[this.category] as number) - (b[this.category] as number));
     },
   },
   methods: {
-    openDialog(User: IUSER) {
+    openDialog(User: IUser) {
       this.dialog = true;
       this.user = User;
     },

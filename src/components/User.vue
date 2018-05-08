@@ -43,6 +43,7 @@ export default Vue.extend({
     setClass(val: number) {
       if (val > 100) {
         return 'blue';
+        // @ts-ignore
       } else if (val >= this.percent) {
         return 'green';
       }
@@ -68,6 +69,7 @@ export default Vue.extend({
   justify-content space-around
   font-size 2rem
   margin 1rem auto
+  cursor pointer
   .value
     border-radius 31px
     border 1px solid #eee
