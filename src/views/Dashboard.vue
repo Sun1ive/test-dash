@@ -34,7 +34,7 @@
     </v-layout>
     <v-dialog
       v-model="dialog"
-      max-width="400"
+      max-width="500"
     >
       <Card
         :name="user.name"
