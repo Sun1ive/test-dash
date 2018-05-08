@@ -17,6 +17,7 @@
   </v-card>
 </template>
 
+
 <script lang="ts">
 import Vue from 'vue';
 
@@ -37,6 +38,7 @@ export default Vue.extend({
   border-radius 11px
   padding 2rem
   text-align center
+  position relative
   &__title
     flex-flow column wrap
   .values
