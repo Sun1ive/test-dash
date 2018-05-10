@@ -1,15 +1,19 @@
 <template>
   <v-container>
-    <v-layout justify-center align-center>
-      <v-flex class="text-xs-center">
-        <h1>Current Category {{ category.toUpperCase() }}</h1>
-      </v-flex>
-    </v-layout>
-    <v-layout justify-center>
+    <v-layout justify-space-around class="wrapper">
       <v-flex xs10 sm6 lg3>
+        <h2>{{ category.toUpperCase() }}</h2>
         <v-select
           :items="['perne', 'lenjerie', 'fete']"
           v-model.lazy="category"
+          color="green"
+        />
+      </v-flex>
+      <v-flex xs10 sm6 lg3>
+        <h2>Manager</h2>
+        <v-select
+          :items="managerList"
+          v-model.lazy="selectedManager"
           color="green"
         />
       </v-flex>
@@ -43,6 +47,7 @@
         :perne="user.perne"
         :lenjerie="user.lenjerie"
         :fete="user.fete"
+        :percent="percent"
       />
     </v-dialog>
   </v-container>
@@ -73,6 +78,7 @@ export default Vue.extend({
     Users: Users as IUserValues[],
     category: 'perne',
     percent: 66,
+    selectedManager: 'All',
     dialog: false,
     user: {
       name: '',
@@ -85,11 +91,17 @@ export default Vue.extend({
   }),
   computed: {
     filtered(): IUserValues[] {
-      return Users
-        .filter((user: IUserValues) => user[this.category])
+      let users = null;
+      if (this.selectedManager === 'All') {
+        users = this.Users;
+      } else {
+        users = this.Users.filter(user => user.manager === this.selectedManager);
+      }
+      return users.filter((user: IUserValues) => user[this.category])
         .sort((a: IUserValues, b: IUserValues) =>
           (a[this.category] as number) - (b[this.category] as number));
     },
+    managerList() { return ['All', ...new Set(Users.map(user => user.manager))]; },
   },
   methods: {
     openDialog(User: IUser) {
@@ -101,6 +113,13 @@ export default Vue.extend({
 </script>
 
 <style lang="stylus" scoped>
+.wrapper
+  max-width 1064px
+  margin 0 auto
+  h2
+    margin 1rem 0
+
+
 .company {
   position: relative;
   width: calc(100% / 2 - 1rem);

@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-avatar size="150px">
-      <img :src="photo" alt="">
+      <img :src="photo" class="myAvatar" alt="">
     </v-avatar>
     <v-card-title primary-title>
       <h2>Name: {{ name }}</h2>
@@ -9,9 +9,21 @@
     </v-card-title>
     <v-card-text>
       <div class="text-xs-left values">
-        <div class="value__wrapper">Perne: <span class="progress red">{{ perne }} %</span></div>
-        <div class="value__wrapper">Lenjerie: <span class="progress blue">{{ lenjerie }} %</span></div>
-        <div class="value__wrapper">Fete: <span class="progress green">{{ fete }} %</span></div>
+        <div class="value__wrapper"><span
+          :class="setClass(perne, percent)"
+          :style="{ width: perne + '%'}"
+          class="progress"
+        >Perne: {{ perne }} %</span></div>
+        <div class="value__wrapper"><span
+          :class="setClass(lenjerie, percent)"
+          :style="{ width: lenjerie + '%'}"
+          class="progress"
+        >Lenjerie: {{ lenjerie }} %</span></div>
+        <div class="value__wrapper"><span
+          :class="setClass(fete, percent)"
+          :style="{ width: fete + '%'}"
+          class="progress"
+        >Fete: {{ fete }} %</span></div>
       </div>
     </v-card-text>
   </v-card>
@@ -19,6 +31,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import setClass from '@/utils/setClass.ts';
 
 export default Vue.extend({
   props: {
@@ -28,6 +41,10 @@ export default Vue.extend({
     perne: { type: Number, required: true },
     lenjerie: { type: Number, required: true },
     fete: { type: Number, required: true },
+    percent: { type: Number, required: true },
+  },
+  methods: {
+    setClass,
   },
 });
 </script>
@@ -45,20 +62,20 @@ export default Vue.extend({
       margin .6rem 0
       display flex
       align-items center
-      font-size 1.4rem
+      font-size 1.2rem
       justify-content space-between
-      border-bottom 1px solid rgba(black, .1)
+      border 1px solid rgba(black, .3)
   .progress
     padding .4rem
-    text-align center
-    width 200px
-    border 1px solid #333
-    border-radius 8px
+    display block
   .blue
     background-color lightblue + 20% !important
   .red
     background-color red + 80% !important
   .green
     background-color green + 80% !important
+
+.myAvatar
+  border 1px solid #333
 </style>
 

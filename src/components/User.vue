@@ -6,13 +6,14 @@
     <div class="box__wrapper">{{ name }}<span class="box__wrapper__text">Name</span></div>
     <div class="box__wrapper">{{ manager }}<span class="box__wrapper__text">Manager</span></div>
     <div
-      :class="setClass(value)"
+      :class="setClass(value, percent)"
       class="box__wrapper value">{{ value }}<span class="box__wrapper__text">Value</span></div>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
+import setClass from '@/utils/setClass.ts';
 
 export default Vue.extend({
   props: {
@@ -38,15 +39,7 @@ export default Vue.extend({
     },
   },
   methods: {
-    setClass(val: number) {
-      if (val > 100) {
-        return 'blue';
-        // @ts-ignore
-      } else if (val >= this.percent) {
-        return 'green';
-      }
-      return 'red';
-    },
+    setClass,
   },
 });
 </script>
