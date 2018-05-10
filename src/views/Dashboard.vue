@@ -101,7 +101,7 @@ export default Vue.extend({
         .sort((a: IUserValues, b: IUserValues) =>
           (a[this.category] as number) - (b[this.category] as number));
     },
-    managerList() { return ['All', ...new Set(Users.map(user => user.manager))]; },
+    managerList(): string[] { return ['All', ...new Set(Users.map(user => user.manager))]; },
   },
   methods: {
     openDialog(User: IUser) {

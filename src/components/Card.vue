@@ -23,7 +23,7 @@
           :class="setClass(fete, percent)"
           :style="{ width: fete + '%'}"
           class="progress"
-        >Fete: {{ fete }} %</span></div>
+        >{{ fete }} %</span></div>
       </div>
     </v-card-text>
   </v-card>
@@ -60,11 +60,9 @@ export default Vue.extend({
   .values
     .value__wrapper
       margin .6rem 0
-      display flex
-      align-items center
       font-size 1.2rem
-      justify-content space-between
       border 1px solid rgba(black, .3)
+      position relative
   .progress
     padding .4rem
     display block
