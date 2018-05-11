@@ -7,7 +7,7 @@
     <div class="box__wrapper box__title">{{ manager }}<span class="box__wrapper__text">Manager</span></div>
     <div
       :class="setClass(value, percent)"
-      class="box__wrapper value">{{ value }}<span class="box__wrapper__text">Value</span></div>
+      class="box__wrapper value">{{ value }} %<span class="box__wrapper__text">Value</span></div>
   </div>
 </template>
 

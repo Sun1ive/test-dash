@@ -71,6 +71,7 @@ export default Vue.extend({
       font-size 1rem
       border 1px solid rgba(black, .3)
       position relative
+      border-radius 8px
       &__title
         position absolute
         top -25px
@@ -79,9 +80,10 @@ export default Vue.extend({
     padding .25rem
     display block
     max-width 100%
-    min-width 50px
+    min-width 35px
+    border-radius 7px
   .blue
-    background-color lightblue + 20% !important
+    background-color lightblue !important
   .red
     background-color red + 80% !important
   .green

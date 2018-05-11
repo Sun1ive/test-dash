@@ -17,5 +17,6 @@ module.exports = {
     'max-len': 0,
     'no-param-reassign': 0,
     'vue/attribute-hyphenation': 0,
+    'class-methods-use-this': 0
   },
 };

@@ -85,23 +85,22 @@ export default class Generator {
   public id = this.getId();
   public bonuses = this.getBonuses();
 
-
-  protected fullName() {
+  public fullName() {
     return names[Math.floor(Math.random() * 50)];
   }
-  protected getManager() {
+  public getManager() {
     return managers[Math.floor(Math.random() * 3)];
   }
-  protected getValue() {
-    return Math.floor(Math.random() * 120) + 1;
+  public getValue() {
+    return Math.floor(Math.random() * 120);
   }
-  protected getPhoto() {
-    return photos[Math.floor(Math.random() * 20) + 1];
+  public getPhoto() {
+    return photos[Math.floor(Math.random() * 20) - 1];
   }
-  protected getId() {
+  public getId() {
     return Math.floor(Math.random() * 932578) + 1;
   }
-  protected getBonuses() {
-    return Math.floor(Math.random() * 1000) + 1;
+  public getBonuses() {
+    return Math.floor(Math.random() * 10000);
   }
 }

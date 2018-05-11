@@ -128,7 +128,7 @@ export default Vue.extend({
     },
   },
   mounted() {
-    this.Users = new Array(30).fill(0);
+    this.Users = new Array(50).fill(0);
     this.Users = this.Users.map(item => {
       // @ts-ignore
       item = new Generator();
