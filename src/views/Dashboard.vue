@@ -24,7 +24,7 @@
         mode="out-in"
         tag="div"
       >
-        <v-flex v-for="user in filtered" :key="user.name">
+        <v-flex v-for="user in filtered" :key="user.id">
           <User
             :name="user.name"
             :manager="user.manager"
@@ -57,31 +57,30 @@
 import Vue from 'vue';
 import User from '@/components/User.vue';
 import Card from '@/components/Card.vue';
-import Users from '@/db/Users';
+import Generator from '@/utils/fakeGenerator';
 
 interface IUser {
-  // eslint-disable-next-line
-  name: string;
+  fullname: string;
   manager: string;
   photo: string;
-}
-interface IUserValues extends IUser {
   perne: number;
   lenjerie: number;
   fete: number;
+  id: number;
   [key: string]: number | string;
 }
 
 export default Vue.extend({
   components: { User, Card },
   data: () => ({
-    Users: Users as IUserValues[],
+    gen: {},
+    Users: [] as IUser[],
     category: 'perne',
     percent: 66,
     selectedManager: 'All',
     dialog: false,
     user: {
-      name: '',
+      fullname: '',
       manager: '',
       photo: '',
       perne: 0,
@@ -90,18 +89,29 @@ export default Vue.extend({
     } as IUser,
   }),
   computed: {
-    filtered(): IUserValues[] {
+    filtered(): IUser[] {
       let users = null;
       if (this.selectedManager === 'All') {
         users = this.Users;
       } else {
         users = this.Users.filter(user => user.manager === this.selectedManager);
       }
-      return users.filter((user: IUserValues) => user[this.category])
-        .sort((a: IUserValues, b: IUserValues) =>
+      return users
+        .filter((user: IUser) => user[this.category])
+        .sort((a: IUser, b: IUser) =>
           (a[this.category] as number) - (b[this.category] as number));
     },
-    managerList(): string[] { return ['All', ...new Set(Users.map(user => user.manager))]; },
+    managerList(): string[] {
+      return ['All', ...new Set(this.Users.map(user => user.manager))];
+    },
+  },
+  mounted() {
+    this.Users = new Array(30).fill(0);
+    this.Users = this.Users.map(item => {
+      // @ts-ignore
+      item = new Generator();
+      return item;
+    });
   },
   methods: {
     openDialog(User: IUser) {

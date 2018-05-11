@@ -3,8 +3,8 @@
     <div class="avatar">
       <img :src="photo">
     </div>
-    <div class="box__wrapper">{{ name }}<span class="box__wrapper__text">Name</span></div>
-    <div class="box__wrapper">{{ manager }}<span class="box__wrapper__text">Manager</span></div>
+    <div class="box__wrapper box__title">{{ name }}<span class="box__wrapper__text">Name</span></div>
+    <div class="box__wrapper box__title">{{ manager }}<span class="box__wrapper__text">Manager</span></div>
     <div
       :class="setClass(value, percent)"
       class="box__wrapper value">{{ value }}<span class="box__wrapper__text">Value</span></div>
@@ -47,20 +47,20 @@ export default Vue.extend({
 <style scoped lang="stylus">
 .mycard
   max-width 1064px
-  padding 1rem 0
+  padding 1rem
   font-family: 'PT Sans', serif;
   border-radius 11px
   box-shadow 0px 2px 10px rgba(green, .1)
   background-color #fff
   color rgba(#000, .9)
   text-decoration none
-  display flex
-  flex-flow row wrap
-  align-items center
-  justify-content space-around
+  display grid
   font-size 2rem
   margin 1rem auto
   cursor pointer
+  grid-template-columns 30px 1fr 1fr 150px
+  grid-gap 20px
+  align-content center
   .value
     border-radius 31px
     border 1px solid #eee
@@ -71,6 +71,8 @@ export default Vue.extend({
     height 70px
   .box__wrapper
     position relative
+    text-align center
+    align-self center
     &__text
       position absolute
       top 0
