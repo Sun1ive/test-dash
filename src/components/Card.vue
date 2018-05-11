@@ -30,6 +30,7 @@
             :style="{ width: fete + '%'}"
             class="progress"
         >{{ fete }} %</span></div>
+        <div class="bonuses">Bonuses: {{ bonuses }}</div>
       </div>
     </v-card-text>
   </v-card>
@@ -48,6 +49,7 @@ export default Vue.extend({
     lenjerie: { type: Number, required: true },
     fete: { type: Number, required: true },
     percent: { type: Number, required: true },
+    bonuses: { type: Number, required: true },
   },
   methods: {
     setClass,
@@ -87,5 +89,9 @@ export default Vue.extend({
 
 .myAvatar
   border 1px solid #333
+.bonuses
+  font-size 1.7rem
+  font-weight 500
+  color lightblue - 30%
 </style>
 

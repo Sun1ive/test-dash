@@ -83,6 +83,7 @@ export default class Generator {
   public lenjerie = this.getValue();
   public fete = this.getValue();
   public id = this.getId();
+  public bonuses = this.getBonuses();
 
 
   protected fullName() {
@@ -99,5 +100,8 @@ export default class Generator {
   }
   protected getId() {
     return Math.floor(Math.random() * 932578) + 1;
+  }
+  protected getBonuses() {
+    return Math.floor(Math.random() * 1000) + 1;
   }
 }

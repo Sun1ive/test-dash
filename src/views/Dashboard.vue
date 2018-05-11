@@ -1,5 +1,10 @@
 <template>
   <v-container>
+    <v-layout justify-center align-center>
+      <v-flex xs3 class="text-xs-center mt-3">
+        <v-btn dark color="green" @click="reset">reset</v-btn>
+      </v-flex>
+    </v-layout>
     <v-layout justify-space-around class="wrapper">
       <v-flex xs10 sm6 lg3>
         <h2>{{ category.toUpperCase() }}</h2>
@@ -56,6 +61,7 @@
         :lenjerie="user.lenjerie"
         :fete="user.fete"
         :percent="percent"
+        :bonuses="user.bonuses"
       />
     </v-dialog>
   </v-container>
@@ -75,6 +81,7 @@ interface IUser {
   lenjerie: number;
   fete: number;
   id: number;
+  bonuses: number;
   [key: string]: number | string;
 }
 
@@ -95,6 +102,7 @@ export default Vue.extend({
       perne: 0,
       lenjerie: 0,
       fete: 0,
+      bonuses: 0,
     } as IUser,
   }),
   computed: {
@@ -131,6 +139,11 @@ export default Vue.extend({
     openDialog(User: IUser) {
       this.dialog = true;
       this.user = User;
+    },
+    reset() {
+      this.sortBy = 'low';
+      this.selectedManager = 'All';
+      this.category = 'perne';
     },
   },
 });
