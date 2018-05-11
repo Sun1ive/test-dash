@@ -50,7 +50,7 @@ export default Vue.extend({
   padding 1rem 0
   font-family: 'PT Sans', serif;
   border-radius 11px
-  box-shadow 0px 2px 10px rgba(green, .4)
+  box-shadow 0px 2px 10px rgba(green, .1)
   background-color #fff
   color rgba(#000, .9)
   text-decoration none
@@ -67,6 +67,8 @@ export default Vue.extend({
     padding 0 2rem
   .avatar
     border 1px solid #333
+    width 70px
+    height 70px
   .box__wrapper
     position relative
     &__text

@@ -9,20 +9,26 @@
     </v-card-title>
     <v-card-text>
       <div class="text-xs-left values">
-        <div class="value__wrapper"><span
-          :class="setClass(perne, percent)"
-          :style="{ width: perne + '%'}"
-          class="progress"
-        >Perne: {{ perne }} %</span></div>
-        <div class="value__wrapper"><span
-          :class="setClass(lenjerie, percent)"
-          :style="{ width: lenjerie + '%'}"
-          class="progress"
-        >Lenjerie: {{ lenjerie }} %</span></div>
-        <div class="value__wrapper"><span
-          :class="setClass(fete, percent)"
-          :style="{ width: fete + '%'}"
-          class="progress"
+        <div class="value__wrapper">
+          <div class="value__wrapper__title">Perne</div>
+          <span
+            :class="setClass(perne, percent)"
+            :style="{ width: perne + '%'}"
+            class="progress"
+        >{{ perne }} %</span></div>
+        <div class="value__wrapper">
+          <div class="value__wrapper__title">Lenjerie</div>
+          <span
+            :class="setClass(lenjerie, percent)"
+            :style="{ width: lenjerie + '%'}"
+            class="progress"
+        >{{ lenjerie }} %</span></div>
+        <div class="value__wrapper">
+          <div class="value__wrapper__title">Fete</div>
+          <span
+            :class="setClass(fete, percent)"
+            :style="{ width: fete + '%'}"
+            class="progress"
         >{{ fete }} %</span></div>
       </div>
     </v-card-text>
@@ -59,13 +65,18 @@ export default Vue.extend({
     flex-flow column wrap
   .values
     .value__wrapper
-      margin .6rem 0
-      font-size 1.2rem
+      margin 2rem 0
+      font-size 1rem
       border 1px solid rgba(black, .3)
       position relative
+      &__title
+        position absolute
+        top -25px
+        left 0
   .progress
-    padding .4rem
+    padding .25rem
     display block
+    max-width 100%
   .blue
     background-color lightblue + 20% !important
   .red
