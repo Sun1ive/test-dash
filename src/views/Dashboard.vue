@@ -17,6 +17,14 @@
           color="green"
         />
       </v-flex>
+      <v-flex xs10 sm6 lg3>
+        <h2>Sort by</h2>
+        <v-select
+          :items="['low', 'high']"
+          v-model.lazy="sortBy"
+          color="green"
+        />
+      </v-flex>
     </v-layout>
     <v-layout column>
       <transition-group
@@ -26,7 +34,7 @@
       >
         <v-flex v-for="user in filtered" :key="user.id">
           <User
-            :name="user.name"
+            :name="user.fullname"
             :manager="user.manager"
             :photo="user.photo"
             :percent="percent"
@@ -41,7 +49,7 @@
       max-width="500"
     >
       <Card
-        :name="user.name"
+        :name="user.fullname"
         :manager="user.manager"
         :photo="user.photo"
         :perne="user.perne"
@@ -76,6 +84,7 @@ export default Vue.extend({
     gen: {},
     Users: [] as IUser[],
     category: 'perne',
+    sortBy: 'low',
     percent: 66,
     selectedManager: 'All',
     dialog: false,
@@ -91,15 +100,20 @@ export default Vue.extend({
   computed: {
     filtered(): IUser[] {
       let users = null;
+      let filtered = null;
       if (this.selectedManager === 'All') {
         users = this.Users;
       } else {
         users = this.Users.filter(user => user.manager === this.selectedManager);
       }
-      return users
+      filtered = users
         .filter((user: IUser) => user[this.category])
         .sort((a: IUser, b: IUser) =>
           (a[this.category] as number) - (b[this.category] as number));
+      if (this.sortBy !== 'low') {
+        filtered = filtered.slice().reverse();
+      }
+      return filtered;
     },
     managerList(): string[] {
       return ['All', ...new Set(this.Users.map(user => user.manager))];

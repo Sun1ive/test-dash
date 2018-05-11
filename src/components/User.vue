@@ -1,6 +1,6 @@
 <template>
   <div class="mycard">
-    <div class="avatar">
+    <div class="myavatar">
       <img :src="photo">
     </div>
     <div class="box__wrapper box__title">{{ name }}<span class="box__wrapper__text">Name</span></div>
@@ -58,21 +58,28 @@ export default Vue.extend({
   font-size 2rem
   margin 1rem auto
   cursor pointer
-  grid-template-columns 30px 1fr 1fr 150px
+  grid-template-columns 75px 1fr 1fr 150px
   grid-gap 20px
   align-content center
   .value
     border-radius 31px
     border 1px solid #eee
     padding 0 2rem
-  .avatar
+  .myavatar
     border 1px solid #333
+    justify-self center
+    border-radius 50%
     width 70px
     height 70px
+    overflow hidden
+    img
+      width 100%
+      height 100%
   .box__wrapper
     position relative
     text-align center
     align-self center
+    justify-self center
     &__text
       position absolute
       top 0

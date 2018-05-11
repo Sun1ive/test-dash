@@ -77,6 +77,7 @@ export default Vue.extend({
     padding .25rem
     display block
     max-width 100%
+    min-width 50px
   .blue
     background-color lightblue + 20% !important
   .red
