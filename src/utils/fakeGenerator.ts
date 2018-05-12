@@ -99,10 +99,10 @@ export default class Generator {
     return Math.floor(Math.random() * ((max - min) + 1)) + min;
   }
   private randomName(): string {
-    return names[this.randomizer(0, 20)];
+    return names[this.randomizer(0, 19)];
   }
   private randomPhoto(): string {
-    return photos[this.randomizer(0, 20)];
+    return photos[this.randomizer(0, 19)];
   }
   private randomManager(): string {
     return managers[this.randomizer(0, managers.length - 1)];

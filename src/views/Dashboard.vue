@@ -54,6 +54,7 @@
       max-width="500"
     >
       <Card
+        v-if="user"
         :name="user.fullname"
         :manager="user.manager"
         :photo="user.photo"
@@ -95,15 +96,7 @@ export default Vue.extend({
     percent: 66,
     selectedManager: 'All',
     dialog: false,
-    user: {
-      fullname: '',
-      manager: '',
-      photo: '',
-      perne: 0,
-      lenjerie: 0,
-      fete: 0,
-      bonuses: 0,
-    } as IUser,
+    user: null as null | IUser,
   }),
   computed: {
     filtered(): IUser[] {
