@@ -51,7 +51,7 @@ const names = [
   'Dee Mcavoy',
 ];
 
-const managers = ['Alexandr Myzuka', 'Andrei Chiboanu', 'Denis Kulkov'];
+const managers = ['Alexandr Myzuka', 'Andrei Chiboanu', 'Denis Kulkov', 'Anton George'];
 const photos = [
   'https://randomuser.me/api/portraits/women/75.jpg',
   'https://randomuser.me/api/portraits/women/72.jpg',
@@ -76,18 +76,24 @@ const photos = [
 ];
 
 export default class Generator {
-  public fullName: string;
+  public fullname: string;
   public photo: string;
+  public manager: string;
   public perne: number;
+  public id: number;
   public lenjerie: number;
   public fete: number;
+  public bonuses: number;
 
   constructor() {
-    this.fullName = this.randomName();
+    this.fullname = this.randomName();
     this.photo = this.randomPhoto();
+    this.manager = this.randomManager();
+    this.id = this.randomizer(0, 284381);
     this.perne = this.randomizer(0, 122);
     this.lenjerie = this.randomizer(0, 122);
     this.fete = this.randomizer(0, 122);
+    this.bonuses = this.randomizer(0, 10000);
   }
   private randomizer(min: number, max: number): number {
     return Math.floor(Math.random() * ((max - min) + 1)) + min;
@@ -97,5 +103,8 @@ export default class Generator {
   }
   private randomPhoto(): string {
     return photos[this.randomizer(0, 20)];
+  }
+  private randomManager(): string {
+    return managers[this.randomizer(0, managers.length - 1)];
   }
 }

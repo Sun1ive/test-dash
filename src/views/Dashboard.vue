@@ -127,13 +127,11 @@ export default Vue.extend({
       return ['All', ...new Set(this.Users.map(user => user.manager))];
     },
   },
-  mounted() {
-    this.Users = new Array(50).fill(0);
-    this.Users = this.Users.map(item => {
-      // @ts-ignore
-      item = new Generator();
-      return item;
-    });
+  created() {
+    this.Users = new Array(40).fill(0).reduce((acc, next) => {
+      acc.push(new Generator());
+      return acc;
+    }, []);
   },
   methods: {
     openDialog(User: IUser) {
