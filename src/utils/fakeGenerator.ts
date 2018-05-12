@@ -76,31 +76,26 @@ const photos = [
 ];
 
 export default class Generator {
-  public fullname = this.fullName();
-  public photo = this.getPhoto();
-  public manager = this.getManager();
-  public perne = this.getValue();
-  public lenjerie = this.getValue();
-  public fete = this.getValue();
-  public id = this.getId();
-  public bonuses = this.getBonuses();
+  public fullName: string;
+  public photo: string;
+  public perne: number;
+  public lenjerie: number;
+  public fete: number;
 
-  public fullName() {
-    return names[Math.floor(Math.random() * 50)];
+  constructor() {
+    this.fullName = this.randomName();
+    this.photo = this.randomPhoto();
+    this.perne = this.randomizer(0, 122);
+    this.lenjerie = this.randomizer(0, 122);
+    this.fete = this.randomizer(0, 122);
   }
-  public getManager() {
-    return managers[Math.floor(Math.random() * 3)];
+  private randomizer(min: number, max: number): number {
+    return Math.floor(Math.random() * ((max - min) + 1)) + min;
   }
-  public getValue() {
-    return Math.floor(Math.random() * 120);
+  private randomName(): string {
+    return names[this.randomizer(0, 20)];
   }
-  public getPhoto() {
-    return photos[Math.floor(Math.random() * 20) - 1];
-  }
-  public getId() {
-    return Math.floor(Math.random() * 932578) + 1;
-  }
-  public getBonuses() {
-    return Math.floor(Math.random() * 10000);
+  private randomPhoto(): string {
+    return photos[this.randomizer(0, 20)];
   }
 }
