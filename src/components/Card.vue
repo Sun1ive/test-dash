@@ -7,7 +7,14 @@
       <h2>Name: {{ name }}</h2>
       <h3>Manager: {{ manager }}</h3>
     </v-card-title>
-    <v-card-text>
+    <chart
+      :options="bar"
+      :initOptions="initOptions"
+      auto-resize
+      class="bar"
+      theme="shine"
+    />
+    <!-- <v-card-text>
       <div class="text-xs-left values">
         <div class="value__wrapper">
           <div class="value__wrapper__title">Perne</div>
@@ -32,7 +39,7 @@
         >{{ fete }} %</span></div>
         <div class="bonuses">Bonuses: {{ bonuses }}</div>
       </div>
-    </v-card-text>
+    </v-card-text> -->
   </v-card>
 </template>
 
@@ -51,6 +58,41 @@ export default Vue.extend({
     percent: { type: Number, required: true },
     bonuses: { type: Number, required: true },
   },
+  data: () => ({
+    initOptions: {
+      renderer: 'svg',
+    },
+    bar: {
+      title: {
+        text: 'GLOBAL KPI',
+      },
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+          type: 'shadow',
+        },
+      },
+      xAxis: {
+        data: [] as string[],
+      },
+      yAxis: {
+        axisLabel: {
+          show: true,
+        },
+      },
+      series: [
+        {
+          type: 'bar',
+          data: [] as number[],
+        },
+      ],
+      animationDuration: 2000,
+    },
+  }),
+  beforeMount() {
+    this.bar.series[0].data.push(this.perne, this.lenjerie, this.fete);
+    this.bar.xAxis.data.push('Perne', 'Lenjerie', 'Fete');
+  },
   methods: {
     setClass,
   },
@@ -58,6 +100,9 @@ export default Vue.extend({
 </script>
 
 <style lang="stylus" scoped>
+.bar
+  width 100%
+
 .card
   border-radius 11px
   padding 2rem

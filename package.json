@@ -2,7 +2,7 @@
   "name": "test-dash",
   "version": "0.1.0",
   "private": true,
-  "main": "main.js",
+  "main": "main.ts",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -10,13 +10,17 @@
     "lint": "vue-cli-service lint",
     "start": "electron .",
     "dev": "yarn serve",
-    "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/icon.icns --prune=true --out=release-builds",
-    "package-win": "electron-packager . electron-tutorial-app --overwrite --asar=true --platform=win32 --arch=ia32 --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Electron Tutorial App\"",
-    "package-linux": "electron-packager . electron-tutorial-app --overwrite --asar=true --platform=linux --arch=x64 --icon=assets/icons/png/1024x1024.png --prune=true --out=release-builds"
+    "package-mac":
+      "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/icon.icns --prune=true --out=release-builds",
+    "package-win":
+      "electron-packager . electron-tutorial-app --overwrite --asar=true --platform=win32 --arch=ia32 --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Electron Tutorial App\"",
+    "package-linux":
+      "electron-packager . electron-tutorial-app --overwrite --asar=true --platform=linux --arch=x64 --prune=true --out=release-builds"
   },
   "dependencies": {
     "register-service-worker": "^1.0.0",
     "vue": "^2.5.16",
+    "vue-echarts": "^3.0.7",
     "vue-router": "^3.0.1",
     "vuetify": "^1.0.17",
     "vuex": "^3.0.1"
@@ -41,28 +45,13 @@
     "ts-jest": "^22.0.1",
     "vue-template-compiler": "^2.5.13"
   },
-  "browserslist": [
-    "> 1%",
-    "last 12 versions",
-    "not ie <= 8"
-  ],
+  "browserslist": ["> 1%", "last 12 versions", "not ie <= 8"],
   "gitHooks": {
     "pre-commit": "lint-staged"
   },
   "lint-staged": {
-    "*.ts": [
-      "vue-cli-service lint",
-      "git add"
-    ],
-    "*.vue": [
-      "vue-cli-service lint",
-      "git add",
-      "vue-cli-service lint",
-      "git add"
-    ],
-    "*.js": [
-      "vue-cli-service lint",
-      "git add"
-    ]
+    "*.ts": ["vue-cli-service lint", "git add"],
+    "*.vue": ["vue-cli-service lint", "git add", "vue-cli-service lint", "git add"],
+    "*.js": ["vue-cli-service lint", "git add"]
   }
 }

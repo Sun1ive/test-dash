@@ -14,7 +14,7 @@
           color="green"
         />
       </v-flex>
-      <v-flex xs10 sm6 lg3>
+      <v-flex xs10 sm6 lg3 class="mx-5">
         <h2>Manager</h2>
         <v-select
           :items="managerList"
