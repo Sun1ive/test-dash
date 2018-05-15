@@ -12,34 +12,13 @@
       :initOptions="initOptions"
       auto-resize
       class="bar"
-      theme="shine"
     />
-    <!-- <v-card-text>
-      <div class="text-xs-left values">
-        <div class="value__wrapper">
-          <div class="value__wrapper__title">Perne</div>
-          <span
-            :class="setClass(perne, percent)"
-            :style="{ width: perne + '%'}"
-            class="progress"
-        >{{ perne }} %</span></div>
-        <div class="value__wrapper">
-          <div class="value__wrapper__title">Lenjerie</div>
-          <span
-            :class="setClass(lenjerie, percent)"
-            :style="{ width: lenjerie + '%'}"
-            class="progress"
-        >{{ lenjerie }} %</span></div>
-        <div class="value__wrapper">
-          <div class="value__wrapper__title">Fete</div>
-          <span
-            :class="setClass(fete, percent)"
-            :style="{ width: fete + '%'}"
-            class="progress"
-        >{{ fete }} %</span></div>
-        <div class="bonuses">Bonuses: {{ bonuses }}</div>
-      </div>
-    </v-card-text> -->
+    <chart
+      :options="pie"
+      :initOptions="initOptions"
+      auto-resize
+      class="bar"
+    />
   </v-card>
 </template>
 
@@ -63,9 +42,29 @@ export default Vue.extend({
       renderer: 'svg',
     },
     bar: {
-      title: {
-        text: 'GLOBAL KPI',
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+          type: 'shadow',
+        },
       },
+      xAxis: {
+        data: [] as string[],
+      },
+      yAxis: {
+        axisLabel: {
+          show: true,
+        },
+      },
+      series: [
+        {
+          type: 'bar',
+          data: [] as number[],
+        },
+      ],
+      animationDuration: 2000,
+    },
+    pie: {
       tooltip: {
         trigger: 'axis',
         axisPointer: {
@@ -92,6 +91,8 @@ export default Vue.extend({
   beforeMount() {
     this.bar.series[0].data.push(this.perne, this.lenjerie, this.fete);
     this.bar.xAxis.data.push('Perne', 'Lenjerie', 'Fete');
+    this.pie.series[0].data.push(this.bonuses);
+    this.pie.xAxis.data.push('Bonuses', 'Hello World');
   },
   methods: {
     setClass,

@@ -2,7 +2,10 @@ import Vue from 'vue';
 import Vuetify from 'vuetify';
 import ECharts from 'vue-echarts/components/ECharts';
 import 'echarts/lib/chart/bar';
+import 'echarts/lib/chart/pie';
 import 'echarts/lib/component/tooltip';
+// import 'echarts/theme/shine';
+// import 'echarts/theme/macarons';
 import 'vuetify/dist/vuetify.css';
 
 import App from './App.vue';
