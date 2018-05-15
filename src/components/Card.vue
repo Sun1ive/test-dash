@@ -91,8 +91,8 @@ export default Vue.extend({
   beforeMount() {
     this.bar.series[0].data.push(this.perne, this.lenjerie, this.fete);
     this.bar.xAxis.data.push('Perne', 'Lenjerie', 'Fete');
-    this.pie.series[0].data.push(this.bonuses);
-    this.pie.xAxis.data.push('Bonuses', 'Hello World');
+    this.pie.series[0].data.push(this.bonuses, Math.ceil(this.bonuses / 31));
+    this.pie.xAxis.data.push('Total bonuses', 'Daily bonuses');
   },
   methods: {
     setClass,
@@ -142,4 +142,3 @@ export default Vue.extend({
   font-weight 500
   color lightblue - 30%
 </style>
-

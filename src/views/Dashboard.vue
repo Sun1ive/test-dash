@@ -51,7 +51,7 @@
     </v-layout>
     <v-dialog
       v-model="dialog"
-      max-width="500"
+      max-width="768"
     >
       <Card
         v-if="user"
